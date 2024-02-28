@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\V1\CurrencyAssetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('currency/assets')->name('currency.assets.')->group(function () {
+    Route::get('/', [CurrencyAssetController::class, 'list'])->name('list');
+    Route::post('/', [CurrencyAssetController::class, 'add'])->name('add');
+    Route::get('/calculate', [CurrencyAssetController::class, 'calculate'])->name('calculate');
 });
+
+
+
+
